@@ -75,7 +75,7 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver, on
 
   return (
     <div className="results-hero" style={{ animation: 'fadeIn .35s ease' }}>
-      <div className="results-header">
+      <div className="results-header" style={{ position: 'fixed', top: 0, left: 0, width: '100vw' }}>
         <span className="header-brand">School Supplies Helper</span>
         <div className="header-actions">
           <button className="info-btn" onClick={() => setTipsOpen(true)}>💡 Tips for Parents</button>
