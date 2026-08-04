@@ -141,10 +141,10 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver, on
 
           return (
             <div className={`supply-item${!collapsed[idx] ? ' is-collapsed' : ''}`} key={idx}>
-              <span className="supply-item-name" onClick={() => toggle(idx)} onMouseEnter={() => setWhyIdx(idx)} onMouseLeave={() => setWhyIdx(null)}>{item.name}
-                {item.why && <span className="why-icon">ⓘ</span>}
+              <span className="supply-item-name" onClick={() => toggle(idx)}>{item.name}
+                {item.why && <span className="why-icon" onMouseEnter={() => setWhyIdx(idx)} onMouseLeave={() => setWhyIdx(null)}>ⓘ</span>}
                 {item.why && whyIdx === idx && (
-                  <div className="why-tip">
+                  <div className="why-tip" onMouseEnter={() => setWhyIdx(idx)} onMouseLeave={() => setWhyIdx(null)}>
                     <span>{item.why}</span>
                   </div>
                 )}
