@@ -38,7 +38,7 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver }: 
         <button className="start-over-btn" onClick={onStartOver}>Start Over</button>
       </div>
 
-      <div className="supply-grid">
+      <div className="supply-grid" data-gender={gender}>
         {supplies.map((item, idx) => {
           let opts: SupplyOption[];
           if (item.gendered) {
