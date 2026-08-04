@@ -2,9 +2,19 @@ import { useState, useMemo, useRef, useEffect } from 'react';
 import type { Gender, GradeInfo, SupplyOption } from '../types';
 import { getSupplies } from '../data';
 
-const sideBanners = [
+const bannerPool = [
   { emoji: '🎒', headline: 'Shop Amazon Back to School', tagline: 'Great deals on everything kids need', url: 'https://www.amazon.com/s?k=back+to+school', tall: true },
   { emoji: '📚', headline: 'Shop Books for Kids', tagline: 'Bestsellers and new releases', url: 'https://www.amazon.com/s?k=books+for+kids' },
+  { emoji: '🎮', headline: 'Shop Video Games', tagline: 'New releases & top deals', url: 'https://www.amazon.com/s?k=video+games', tall: true },
+  { emoji: '👟', headline: 'Shop Sneakers & Shoes', tagline: 'Top brands on sale', url: 'https://www.amazon.com/s?k=sneakers' },
+  { emoji: '🧸', headline: 'Shop Toys & Games', tagline: 'Fun for all ages', url: 'https://www.amazon.com/s?k=toys', tall: true },
+  { emoji: '🏡', headline: 'Shop Home & Kitchen', tagline: 'Essentials and upgrades', url: 'https://www.amazon.com/s?k=home+kitchen' },
+  { emoji: '💻', headline: 'Shop Electronics', tagline: 'Laptops, tablets & more', url: 'https://www.amazon.com/s?k=electronics', tall: true },
+  { emoji: '👕', headline: 'Shop Clothing', tagline: 'Seasonal styles for everyone', url: 'https://www.amazon.com/s?k=clothing' },
+  { emoji: '🏋️', headline: 'Shop Fitness', tagline: 'Gear, equipment & accessories', url: 'https://www.amazon.com/s?k=fitness', tall: true },
+  { emoji: '🌿', headline: 'Shop Outdoor & Garden', tagline: 'Patio, plants & more', url: 'https://www.amazon.com/s?k=outdoor+garden' },
+  { emoji: '🐾', headline: 'Shop Pet Supplies', tagline: 'Food, toys & essentials', url: 'https://www.amazon.com/s?k=pet+supplies', tall: true },
+  { emoji: '💄', headline: 'Shop Beauty', tagline: 'Skincare, makeup & hair', url: 'https://www.amazon.com/s?k=beauty' },
 ];
 
 interface ResultsPageProps {
@@ -72,10 +82,21 @@ const gradeLabels: [string, string][] = [
 
 const genders: Gender[] = ['boy', 'girl'];
 
+function shuffle<T>(a: T[]): T[] {
+  const b = [...a];
+  for (let i = b.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [b[i], b[j]] = [b[j], b[i]];
+  }
+  return b;
+}
+
 function SideBanners() {
+  const ads = useMemo(() => shuffle(bannerPool).slice(0, 2), []);
+
   return (
     <div className="side-banners">
-      {sideBanners.map((b, i) => (
+      {ads.map((b, i) => (
         <a key={i} className={`side-banner${b.tall ? ' side-banner--tall' : ''}`} href={b.url} target="_blank" rel="noopener">
           <span className="side-banner-emoji">{b.emoji}</span>
           <span className="side-banner-text">
@@ -174,7 +195,7 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver, on
                       <span>{item.why}</span>
                     </div>
                   )}
-                  <span className="collapse-arrow">▶</span>
+                  <span className="collapse-arrow">❯</span>
                 </span>
                 {collapsed[idx] && (
                 <div className="supply-options">
