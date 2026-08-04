@@ -80,6 +80,7 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver, on
         <div className="header-actions">
           <button className="info-btn" onClick={() => setTipsOpen(true)}>💡 Tips for Parents</button>
           <button className="info-btn" onClick={() => setFaqOpen(true)}>❓ FAQ</button>
+          <button className="start-over-btn" onClick={onStartOver}>Start Over</button>
         </div>
       </div>
 
@@ -106,7 +107,6 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver, on
         <p className="summary">
           {info.subtitle}
         </p>
-        <button className="start-over-btn" onClick={onStartOver} style={{ marginTop: 12 }}>Start Over</button>
       </div>
 
       <Modal open={tipsOpen} onClose={() => setTipsOpen(false)} title="💡 Tips for Parents">
