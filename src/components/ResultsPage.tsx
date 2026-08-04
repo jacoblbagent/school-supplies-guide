@@ -76,7 +76,7 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver, on
   return (
     <div className="results-hero" style={{ animation: 'fadeIn .35s ease' }}>
       <div className="results-header" style={{ position: 'fixed', top: 0, left: 0, width: '100vw' }}>
-        <span className="header-brand">School Supplies Helper</span>
+        <span className="header-brand" role="button" tabIndex={0} onClick={onStartOver} onKeyDown={e => e.key === 'Enter' && onStartOver()}>School Supplies Helper</span>
         <div className="header-actions">
           <button className="info-btn" onClick={() => setTipsOpen(true)}>💡 Tips for Parents</button>
           <button className="info-btn" onClick={() => setFaqOpen(true)}>❓ FAQ</button>
