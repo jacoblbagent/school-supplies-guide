@@ -271,6 +271,7 @@ body {
   vertical-align: middle;
   line-height: 1;
   transform: translateY(-1px);
+  cursor: help;
 }
 
 .why-icon:hover { color: var(--gray-600); }
