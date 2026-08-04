@@ -109,10 +109,10 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver }: 
 
           return (
             <div className="supply-item" key={idx}>
-              <span className="supply-item-name">{item.name}
-                {item.why && <span className="why-icon" onClick={e => { e.stopPropagation(); setWhyIdx(whyIdx === idx ? null : idx); }}>ⓘ</span>}
+              <span className="supply-item-name" onMouseEnter={() => setWhyIdx(idx)} onMouseLeave={() => setWhyIdx(null)}>{item.name}
+                {item.why && <span className="why-icon">ⓘ</span>}
                 {item.why && whyIdx === idx && (
-                  <div className="why-tip" onClick={e => e.stopPropagation()}>
+                  <div className="why-tip">
                     <span>{item.why}</span>
                   </div>
                 )}
