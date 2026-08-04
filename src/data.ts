@@ -340,79 +340,130 @@ function pencilCaseOpts(g: number, _gender: 'boy' | 'girl'): SupplyOption[] {
 }
 
 // ─── Build ──────────────────────────────────────────────────
+function why(g: number, arr: [number, string][]): string {
+  for (const [max, msg] of arr) { if (g <= max) return msg; }
+  return arr[arr.length-1][1];
+}
+
 function buildSupplies(grade: number): SupplyItem[] {
   const g = grade;
   const all: SupplyItem[] = [
     {
       icon: '🎒', name: 'Backpack', image: IMG.backpack, gendered: true,
+      why: why(g, [[1, 'Smaller packs sized for little frames — no heavy textbooks yet.'],
+        [3, 'Standard size for daily supplies and beginning homework.'],
+        [5, 'Large enough for binders, textbooks, and a laptop.']]),
       boy: backpackOpts(g, 'boy'),
       girl: backpackOpts(g, 'girl'),
     },
     {
       icon: '🍱', name: 'Lunchbox', image: IMG.lunchbox, gendered: true,
+      why: why(g, [[1, 'Easy-open designs help build independence at lunchtime.'],
+        [3, 'Insulated box keeps lunch fresh through a longer day.'],
+        [5, 'Bigger portions and bento options for older kids.']]),
       boy: lunchboxOpts(g, 'boy'),
       girl: lunchboxOpts(g, 'girl'),
     },
     {
       icon: '✏', name: 'Pencils', image: IMG.pencils, gendered: false,
+      why: why(g, [[0, 'Fat triangular grip helps new writers develop proper pencil hold.'],
+        [2, 'Standard #2s for daily writing. Pre-sharpened saves time.'],
+        [5, 'Mechanical pencils for neat, consistent writing across subjects.']]),
       options: pencilOpts(g),
     },
     {
       icon: '🖍', name: 'Crayons', image: IMG.crayons, gendered: false,
+      why: why(g, [[2, 'Essential for fine motor development, coloring, and early projects. 24 colors is plenty.'],
+        [5, '64 colors for detailed maps, diagrams, and illustrations.']]),
       options: crayonOpts(g),
     },
     {
       icon: '🖊', name: 'Markers', image: IMG.markers, gendered: false,
+      why: why(g, [[3, 'Broad washable markers for posters, art, and group projects.'],
+        [5, 'Fine-line markers for precise diagrams and detailed work.']]),
       options: markerOpts(g),
     },
     {
       icon: '🎨', name: 'Colored Pencils', image: IMG.colored, gendered: false,
+      why: why(g, [[1, 'Pre-sharpened and easy to grip — great for first labeling and coloring.'],
+        [5, 'Wider range for maps, science diagrams, and detailed illustrations.']]),
       options: coloredPencilOpts(g),
     },
     {
       icon: '🧴', name: 'Glue', image: IMG.glue, gendered: false,
+      why: why(g, [[1, 'Purple-to-clear glue sticks are mess-free and show kids where they\'ve glued.'],
+        [3, 'Bulk sticks for bigger projects. Liquid glue available for advanced crafts.'],
+        [5, 'Economy-size refills for frequent group projects and presentations.']]),
       options: glueOpts(g),
     },
     {
       icon: '✂', name: 'Scissors', image: IMG.scissors, gendered: false,
+      why: why(g, [[1, 'Blunt-tip safety scissors protect little fingers while learning to cut.'],
+        [3, 'Pointed tips for precision cutting — great for worksheets and crafts.'],
+        [5, 'Full-size pointed scissors for detailed cutting projects.']]),
       options: scissorsOpts(g),
     },
     {
       icon: '📓', name: 'Notebooks', image: IMG.notebooks, gendered: false,
+      why: why(g, [[0, 'Primary journal with drawing space for kids just learning to write.'],
+        [2, 'Wide-ruled spirals for growing handwriting skills.'],
+        [3, '5 spirals for separate subjects as curriculum expands.'],
+        [5, 'College-rule for volume writing across multiple subjects.']]),
       options: notebookOpts(g),
     },
     {
       icon: '📁', name: 'Organization', image: IMG.folders, gendered: false,
+      why: why(g, [[1, 'Color-coded folders teach basic organization — one per subject.'],
+        [2, 'Folders with prongs keep worksheets from falling out.'],
+        [5, 'D-ring binders handle the heavier workload of upper elementary.']]),
       options: orgOpts(g),
     },
     {
       icon: '⬜', name: 'Dry Erase Markers', image: IMG.expo, gendered: false,
+      why: why(g, [[2, 'Used daily for handwriting practice, math facts, and spelling on individual whiteboards.'],
+        [5, 'Still used for small-group work and quick-response activities.']]),
       options: dryEraseOpts(g),
     },
     {
       icon: '🔆', name: 'Highlighters', image: IMG.highlighter, gendered: false, minGrade: 2,
+      why: why(g, [[2, 'Introduce highlighting key information in reading passages.'],
+        [5, 'Essential for color-coded note-taking and study strategies.']]),
       options: highlighterOpts(g),
     },
     {
       icon: '📐', name: 'Ruler & Geometry', image: IMG.ruler, gendered: false, minGrade: 2,
+      why: why(g, [[2, 'Simple ruler for measuring and basic geometry in math.'],
+        [3, 'Ruler + protractor for angles and measurement.'],
+        [5, 'Full geometry set for advanced math, area, and volume work.']]),
       options: rulerOpts(g),
     },
     {
       icon: '📇', name: 'Index Cards & Notes', image: IMG.indexcards, gendered: false, minGrade: 2,
+      why: why(g, [[2, 'Great for vocabulary words, spelling practice, and math facts.'],
+        [3, 'Flashcards for studying. Post-its for marking pages.'],
+        [5, 'Study aids, research notes, and graph paper for math plotting.']]),
       options: indexOpts(g),
     },
     {
       icon: '💧', name: 'Water Bottle', image: IMG.water, gendered: true,
+      why: why(g, [[1, 'Small spill-proof bottle keeps hydration accessible without mess.'],
+        [3, 'Medium size fits most backpack pockets. Pop-top for easy drinking.'],
+        [5, 'Large insulated bottle for full-day hydration.']]),
       boy: waterOpts(g, 'boy'),
       girl: waterOpts(g, 'girl'),
     },
     {
       icon: '🎧', name: 'Headphones', image: IMG.headphones, gendered: true, minGrade: 3,
+      why: why(g, [[3, 'Required for computer-based testing, typing practice, and learning apps.'],
+        [5, 'Used for online assessments, research, and multimedia projects.']]),
       boy: headphoneOpts(g, 'boy'),
       girl: headphoneOpts(g, 'girl'),
     },
     {
       icon: '🧰', name: 'Pencil Case', image: IMG.pencilcase, gendered: true,
+      why: why(g, [[1, 'Hard box fits in a standard desk and keeps small items organized.'],
+        [3, 'Pouch or box works for growing collections of supplies.'],
+        [5, 'Large pouch fits mechanical pencils, highlighters, pens, and more.']]),
       boy: pencilCaseOpts(g, 'boy'),
       girl: pencilCaseOpts(g, 'girl'),
     },

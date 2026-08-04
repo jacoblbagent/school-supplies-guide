@@ -63,6 +63,7 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver }: 
   const supplies = useMemo(() => getSupplies(gradeKey), [gradeKey]);
   const [tipsOpen, setTipsOpen] = useState(false);
   const [faqOpen, setFaqOpen] = useState(false);
+  const [whyIdx, setWhyIdx] = useState<number | null>(null);
 
   return (
     <div className="results-hero" style={{ animation: 'fadeIn .35s ease' }}>
@@ -107,7 +108,14 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver }: 
 
           return (
             <div className="supply-item" key={idx}>
-              <span className="supply-item-name">{item.name}</span>
+              <span className="supply-item-name">{item.name}
+                {item.why && <span className="why-icon" onClick={e => { e.stopPropagation(); setWhyIdx(whyIdx === idx ? null : idx); }}>ⓘ</span>}
+                {item.why && whyIdx === idx && (
+                  <div className="why-tip" onClick={e => e.stopPropagation()}>
+                    <span>{item.why}</span>
+                  </div>
+                )}
+              </span>
               <div className="supply-options">
                 {opts.map((opt, oi) => (
                   <a className="supply-option" key={oi} href={opt.link} target="_blank" rel="noopener">
