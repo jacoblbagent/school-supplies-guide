@@ -11,30 +11,35 @@ export const gradeInfo: Record<string, GradeInfo> = {
 
 export const grades = ['k', '1', '2', '3', '4', '5'];
 
+function catImg(emoji: string, c1: string, c2: string): string {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300">
+    <defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${c1}"/><stop offset="100%" stop-color="${c2}"/>
+    </linearGradient></defs>
+    <rect width="400" height="300" fill="url(#g)"/>
+    <text x="200" y="170" text-anchor="middle" font-size="72" fill="rgba(255,255,255,0.92)" font-family="Apple Color Emoji,Segoe UI Emoji,Noto Color Emoji,Twemoji,EmojiOne Color,sans-serif">${emoji}</text>
+  </svg>`;
+  return 'data:image/svg+xml,' + encodeURIComponent(svg);
+}
+
 const IMG = {
-  backpack:   'https://m.media-amazon.com/images/I/61bbyHMQ4xL._AC_SX466_.jpg',
-  lunchbox:   'https://m.media-amazon.com/images/I/81K4caCR1tL._AC_SX569_.jpg',
-  pencils:    'https://m.media-amazon.com/images/I/61Wd-8tcUFL._AC_SX425_.jpg',
-  crayons:    'https://m.media-amazon.com/images/I/71-6xls--oL._AC_SX569_.jpg',
-  markers:    'https://m.media-amazon.com/images/I/81oGqFUgN-L._AC_SX569_.jpg',
-  colored:    'https://m.media-amazon.com/images/I/711qylvVF9L._AC_SY879_.jpg',
-  glue:       'https://m.media-amazon.com/images/I/81dWHZqx6iL._SX425_.jpg',
-  scissors:   'https://m.media-amazon.com/images/I/61mWRihnbFL._AC_SX569_.jpg',
-  notebooks:  'https://m.media-amazon.com/images/I/81BHKAnoKQL._AC_SX425_.jpg',
-  folders:    'https://m.media-amazon.com/images/I/61S2KcQRFjL._AC_SX425_.jpg',
-  expo:       'https://m.media-amazon.com/images/I/81ZQ4C3jBCL._AC_SX425_.jpg',
-  water:      'https://m.media-amazon.com/images/I/61jJkCwwNSL._AC_SX569_.jpg',
-  headphones: 'https://m.media-amazon.com/images/I/61sW8UNU0XL._AC_SX425_.jpg',
-  pencilcase: 'https://m.media-amazon.com/images/I/71R8UhxSc-L._AC_SX425_.jpg',
-  pouch:      'https://m.media-amazon.com/images/I/71ER4J7omcL._AC_SX385_.jpg',
-  girlbckpk:  'https://m.media-amazon.com/images/I/714m2kqkUvL._AC_SX425_.jpg',
-  bento:      'https://m.media-amazon.com/images/I/71VKXcaB8QL._AC_SX569_.jpg',
-  pinklunch:  'https://m.media-amazon.com/images/I/91OGmCk2DTL._AC_SX569_.jpg',
-  water12:    'https://m.media-amazon.com/images/I/51C3Jby5XoL._AC_SX569_.jpg',
-  smock:      'https://m.media-amazon.com/images/I/61DuT8E6O9L._AC_SX466_.jpg',
-  highlighter: 'https://m.media-amazon.com/images/I/81DIdaBnl2L._AC_SX425_.jpg',
-  ruler:      'https://m.media-amazon.com/images/I/51nR-2kuSvL._AC_SX569_.jpg',
-  indexcards: 'https://m.media-amazon.com/images/I/61-abr9bylL._AC_SX425_.jpg',
+  backpack:   catImg('🎒', '#667eea', '#764ba2'),
+  lunchbox:   catImg('🍱', '#f093fb', '#f5576c'),
+  pencils:    catImg('✏️', '#4facfe', '#00f2fe'),
+  crayons:    catImg('🖍️', '#43e97b', '#38f9d7'),
+  markers:    catImg('🖊️', '#fa709a', '#fee140'),
+  colored:    catImg('🎨', '#a18cd1', '#fbc2eb'),
+  glue:       catImg('🧴', '#ffecd2', '#fcb69f'),
+  scissors:   catImg('✂️', '#89f7fe', '#66a6ff'),
+  notebooks:  catImg('📓', '#fddb92', '#d1fdff'),
+  folders:    catImg('📁', '#e0c3fc', '#8ec5fc'),
+  expo:       catImg('⬜', '#d4fc79', '#96e6a1'),
+  water:      catImg('💧', '#74ebd5', '#9face6'),
+  headphones: catImg('🎧', '#f6d365', '#fda085'),
+  pencilcase: catImg('🧰', '#a1c4fd', '#c2e9fb'),
+  highlighter: catImg('🔆', '#fccb90', '#d57eeb'),
+  ruler:      catImg('📐', '#e6b980', '#acb6e5'),
+  indexcards: catImg('📇', '#30cfd0', '#330867'),
 };
 
 // Helper: pick two options per grade tier
