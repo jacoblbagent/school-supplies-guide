@@ -256,7 +256,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: fadeIn .2s ease;
 }
 
 .modal {
