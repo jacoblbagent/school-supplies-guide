@@ -337,7 +337,7 @@ function pencilCaseOpts(g: number, _gender: 'boy' | 'girl'): SupplyOption[] {
 // ─── Build ──────────────────────────────────────────────────
 function buildSupplies(grade: number): SupplyItem[] {
   const g = grade;
-  return [
+  const all: SupplyItem[] = [
     {
       icon: '🎒', name: 'Backpack', image: IMG.backpack, gendered: true,
       boy: backpackOpts(g, 'boy'),
@@ -385,15 +385,15 @@ function buildSupplies(grade: number): SupplyItem[] {
       options: dryEraseOpts(g),
     },
     {
-      icon: '🔆', name: 'Highlighters', image: IMG.highlighter, gendered: false,
+      icon: '🔆', name: 'Highlighters', image: IMG.highlighter, gendered: false, minGrade: 2,
       options: highlighterOpts(g),
     },
     {
-      icon: '📐', name: 'Ruler & Geometry', image: IMG.ruler, gendered: false,
+      icon: '📐', name: 'Ruler & Geometry', image: IMG.ruler, gendered: false, minGrade: 2,
       options: rulerOpts(g),
     },
     {
-      icon: '📇', name: 'Index Cards & Notes', image: IMG.indexcards, gendered: false,
+      icon: '📇', name: 'Index Cards & Notes', image: IMG.indexcards, gendered: false, minGrade: 2,
       options: indexOpts(g),
     },
     {
@@ -402,7 +402,7 @@ function buildSupplies(grade: number): SupplyItem[] {
       girl: waterOpts(g, 'girl'),
     },
     {
-      icon: '🎧', name: 'Headphones', image: IMG.headphones, gendered: true,
+      icon: '🎧', name: 'Headphones', image: IMG.headphones, gendered: true, minGrade: 3,
       boy: headphoneOpts(g, 'boy'),
       girl: headphoneOpts(g, 'girl'),
     },
@@ -412,6 +412,7 @@ function buildSupplies(grade: number): SupplyItem[] {
       girl: pencilCaseOpts(g, 'girl'),
     },
   ];
+  return all.filter(item => (item.minGrade ?? 0) <= g);
 }
 
 export function getSupplies(grade: string): SupplyItem[] {
