@@ -72,7 +72,7 @@ function App() {
   return (
     <div className="app">
       {step === 'gender' && <GenderStep onSelect={selectGender} />}
-      {step === 'grade' && <GradeStep onSelect={selectGrade} onBack={backToGender} />}
+      {step === 'grade' && <GradeStep gender={gender} onSelect={selectGrade} onBack={backToGender} />}
       {step === 'results' && gradeKey && (
         <ResultsPage
           gender={gender}

@@ -11,11 +11,11 @@ export function GenderStep({ onSelect }: GenderStepProps) {
       <h1 className="step-title">Is your child a boy or a girl?</h1>
       <p className="step-subtitle">We'll customize supply recommendations based on their gender.</p>
       <div className="card-grid">
-        <button className="choice-card" onClick={() => onSelect('boy')}>
+        <button className="choice-card" data-gender="boy" onClick={() => onSelect('boy')}>
           <span className="card-icon">👦</span>
           Boy
         </button>
-        <button className="choice-card" onClick={() => onSelect('girl')}>
+        <button className="choice-card" data-gender="girl" onClick={() => onSelect('girl')}>
           <span className="card-icon">👧</span>
           Girl
         </button>

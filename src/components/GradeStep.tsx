@@ -1,6 +1,8 @@
 import { grades, gradeInfo } from '../data';
+import type { Gender } from '../types';
 
 interface GradeStepProps {
+  gender: Gender;
   onSelect: (gradeKey: string) => void;
   onBack: () => void;
 }
@@ -14,7 +16,7 @@ const gradeLabels: Record<string, string> = {
   '5': '5th',
 };
 
-export function GradeStep({ onSelect, onBack }: GradeStepProps) {
+export function GradeStep({ gender, onSelect, onBack }: GradeStepProps) {
   return (
     <div className="step">
       <div className="step-icon">📚</div>
@@ -24,7 +26,7 @@ export function GradeStep({ onSelect, onBack }: GradeStepProps) {
         {grades.map(gk => {
           const info = gradeInfo[gk];
           return (
-            <button key={gk} className="choice-card choice-grade" onClick={() => onSelect(gk)}>
+            <button key={gk} className="choice-card choice-grade" data-gender={gender} onClick={() => onSelect(gk)}>
               <span className="card-icon">{gradeLabels[gk]}</span>
               <span style={{ display: 'block', fontSize: '0.65rem', fontWeight: 400, color: 'var(--gray-400)', marginTop: 2 }}>
                 {info.subtitle.split('·')[0].trim()}
