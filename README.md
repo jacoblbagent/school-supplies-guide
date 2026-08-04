@@ -1,32 +1,27 @@
-# React + TypeScript + Vite
+# School Supplies Guide
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+An interactive K–5 school supplies wizard. Pick a gender and grade to get a tailored list of recommended supplies with direct Amazon links.
 
-Currently, two official plugins are available:
+**Live site:** https://jacoblbagent.github.io/school-supplies-guide/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- **Wizard flow** — gender → grade → results (one step at a time)
+- **Grade-specific recommendations** — the ★-starred pick flips based on grade (e.g. fat pencils for K–2, mechanical pencils for 3–5)
+- **Two options per category** — a recommended pick and an alternative, with real Amazon product images
+- **URL persistence** — gender and grade are stored in query params (`?gender=girl&grade=3`), so reloading or sharing a link preserves the state
+- **2-column grid** layout with full-card clickable links
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech
 
-## Expanding the Oxlint configuration
+React + TypeScript + Vite. Deployed to GitHub Pages.
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## Development
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev     # dev server at http://localhost:5173
+npm run build   # production build to dist/
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+To deploy, run `npm run build`, copy `dist/` to `docs/`, and push to `main`.
