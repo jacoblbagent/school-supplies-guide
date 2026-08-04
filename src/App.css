@@ -260,7 +260,6 @@ body {
   background: #fff;
   border: 1px solid var(--gray-100);
   border-radius: var(--radius);
-  overflow: hidden;
   text-align: left;
 }
 
