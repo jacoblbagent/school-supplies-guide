@@ -1,6 +1,34 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
-import type { Gender, GradeInfo, SupplyOption } from '../types';
+import type { Gender, GradeInfo } from '../types';
 import { getSupplies } from '../data';
+
+const banners: Record<string, { emoji: string; headline: string; tagline: string; url: string }> = {
+  Backpack:     { emoji: '🎒', headline: 'Shop Kids Backpacks', tagline: 'Find the perfect backpack for every grade', url: 'https://www.amazon.com/s?k=kids+school+backpack' },
+  Lunchbox:    { emoji: '🍱', headline: 'Shop Lunch Boxes', tagline: 'Insulated, bento, and classic options', url: 'https://www.amazon.com/s?k=kids+lunchbox' },
+  Pencils:     { emoji: '✏️', headline: 'Shop Pencils & Writing Tools', tagline: 'From fat primary to mechanical', url: 'https://www.amazon.com/s?k=school+pencils+bulk' },
+  Crayons:     { emoji: '🖍️', headline: 'Shop Crayons', tagline: 'Crayola packs for every age', url: 'https://www.amazon.com/s?k=crayola+crayons' },
+  Markers:     { emoji: '🖊️', headline: 'Shop Markers', tagline: 'Washable broad and fine line', url: 'https://www.amazon.com/s?k=washable+markers' },
+  'Colored Pencils': { emoji: '🎨', headline: 'Shop Colored Pencils', tagline: 'Pre-sharpened, vibrant, classroom-ready', url: 'https://www.amazon.com/s?k=colored+pencils+crayola' },
+  'Glue & Paste':  { emoji: '🧴', headline: 'Shop Glue & Paste', tagline: 'Glue sticks, liquid glue, and more', url: 'https://www.amazon.com/s?k=school+glue+sticks' },
+  Scissors:    { emoji: '✂️', headline: 'Shop Scissors', tagline: 'Safety, blunt, and pointed tip options', url: 'https://www.amazon.com/s?k=kids+school+scissors' },
+  Notebooks:   { emoji: '📓', headline: 'Shop Notebooks', tagline: 'Composition, spiral, and subject notebooks', url: 'https://www.amazon.com/s?k=school+notebooks+bulk' },
+  Folders:     { emoji: '📁', headline: 'Shop Folders & Binders', tagline: 'Pocket folders, 3-ring, and dividers', url: 'https://www.amazon.com/s?k=school+folders+pocket' },
+  'Dry-Erase Markers': { emoji: '⬜', headline: 'Shop Dry-Erase Markers', tagline: 'Low-odor, fine tip, classroom packs', url: 'https://www.amazon.com/s?k=dry+erase+markers+bulk' },
+  'Water Bottle': { emoji: '💧', headline: 'Shop Water Bottles', tagline: 'Leak-proof, insulated, dishwasher-safe', url: 'https://www.amazon.com/s?k=kids+water+bottle+school' },
+  Headphones:  { emoji: '🎧', headline: 'Shop Headphones', tagline: 'On-ear, volume-limited, school-friendly', url: 'https://www.amazon.com/s?k=kids+school+headphones' },
+  'Pencil Case': { emoji: '🧰', headline: 'Shop Pencil Cases', tagline: 'Pencil pouches, boxes, and organizers', url: 'https://www.amazon.com/s?k=pencil+case+school' },
+  Highlighters: { emoji: '🔆', headline: 'Shop Highlighters', tagline: 'Bright, smear-safe, assorted colors', url: 'https://www.amazon.com/s?k=highlighters+assorted' },
+  Erasers:     { emoji: '🧹', headline: 'Shop Erasers', tagline: 'Pink, vinyl, pencil-top, and block erasers', url: 'https://www.amazon.com/s?k=school+erasers+bulk' },
+  'Ruler':      { emoji: '📏', headline: 'Shop Rulers', tagline: 'Standard and metric rulers for every desk', url: 'https://www.amazon.com/s?k=school+ruler' },
+  'Paper & Journals': { emoji: '📄', headline: 'Shop Paper & Journals', tagline: 'Loose leaf, graph paper, and journals', url: 'https://www.amazon.com/s?k=notebook+paper+wide+ruled' },
+  'Index Cards': { emoji: '🗂️', headline: 'Shop Index Cards', tagline: 'Blank, lined, and ruled — study-ready', url: 'https://www.amazon.com/s?k=index+cards+3x5' },
+  'Post-it Notes': { emoji: '📝', headline: 'Shop Post-it Notes', tagline: 'Sticky notes, flags, and tabs', url: 'https://www.amazon.com/s?k=post+it+notes+bulk' },
+  'Hand Sanitizer': { emoji: '🧼', headline: 'Shop Hand Sanitizer', tagline: 'Pocket-size and classroom-safe', url: 'https://www.amazon.com/s?k=hand+sanitizer+school' },
+  'Tissues':   { emoji: '🧻', headline: 'Shop Tissues', tagline: 'Lotion-infused, hypoallergenic packs', url: 'https://www.amazon.com/s?k=facial+tissues+bulk' },
+  'Paper Towels': { emoji: '🧴', headline: 'Shop Paper Towels', tagline: 'Classroom pack for cleanup', url: 'https://www.amazon.com/s?k=paper+towels+bulk' },
+  'Ziploc Bags': { emoji: '🛍️', headline: 'Shop Ziploc Bags', tagline: 'Sandwich, quart, and gallon sizes', url: 'https://www.amazon.com/s?k=ziploc+bags+assorted' },
+  'Wipes':    { emoji: '🧻', headline: 'Shop Cleaning Wipes', tagline: 'Disinfecting wipes for desks and surfaces', url: 'https://www.amazon.com/s?k=disinfecting+wipes+school' },
+};
 
 interface ResultsPageProps {
   gender: Gender;
@@ -136,12 +164,7 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver, on
 
       <div className="supply-grid" data-gender={gender}>
         {supplies.map((item, idx) => {
-          let opts: SupplyOption[];
-          if (item.gendered) {
-            opts = (gender === 'boy' ? item.boy : item.girl) ?? [];
-          } else {
-            opts = item.options ?? [];
-          }
+          const ad = banners[item.name];
 
           return (
             <div className={`supply-item${!collapsed[idx] ? ' is-collapsed' : ''}`} key={idx}>
@@ -154,18 +177,16 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver, on
                 )}
                 <span className="collapse-arrow">{collapsed[idx] ? '▼' : '▶'}</span>
               </span>
-              {collapsed[idx] && (
-              <div className="supply-options">
-                {opts.map((opt, oi) => (
-                  <a className="supply-option" key={oi} href={opt.link} target="_blank" rel="noopener">
-                    <div className="option-header">
-                      <span className="option-name">{opt.name}</span>
-                      {opt.rec && <span className="rec-star">★</span>}
-                    </div>
-                    <div className="option-desc">{opt.desc}</div>
-                  </a>
-                ))}
-              </div>
+              {collapsed[idx] && ad && (
+                <a className="banner-ad" href={ad.url} target="_blank" rel="noopener">
+                  <span className="banner-emoji">{ad.emoji}</span>
+                  <span className="banner-text">
+                    <span className="banner-headline">{ad.headline}</span>
+                    <span className="banner-tagline">{ad.tagline}</span>
+                  </span>
+                  <span className="banner-cta">Shop Now</span>
+                  <span className="banner-sponsored">Sponsored</span>
+                </a>
               )}
             </div>
           );
