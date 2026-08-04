@@ -257,6 +257,7 @@ body {
   color: var(--gray-400);
   vertical-align: middle;
   line-height: 1;
+  transform: translateY(-1px);
 }
 
 .why-icon:hover { color: var(--gray-600); }
