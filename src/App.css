@@ -311,18 +311,26 @@ body {
   cursor: pointer;
   user-select: none;
   border-bottom: 1px solid var(--gray-100);
+  color: var(--gray-600);
+  background: #fff;
 }
 
 .supply-grid[data-gender="boy"] .supply-item-name {
-  color: #1e40af;
-  background: var(--blue-light);
-  border-bottom-color: #bfdbfe;
+  border-left: 3px solid transparent;
+  transition: border-left-color .15s;
 }
 
 .supply-grid[data-gender="girl"] .supply-item-name {
-  color: #9d174d;
-  background: var(--pink-light);
-  border-bottom: 1px solid #fbcfe8;
+  border-left: 3px solid transparent;
+  transition: border-left-color .15s;
+}
+
+.supply-grid[data-gender="boy"] .supply-item.is-collapsed .supply-item-name:hover {
+  border-left-color: var(--blue);
+}
+
+.supply-grid[data-gender="girl"] .supply-item.is-collapsed .supply-item-name:hover {
+  border-left-color: var(--pink);
 }
 
 .collapse-arrow {
@@ -330,11 +338,6 @@ body {
   font-size: 0.7rem;
   color: var(--gray-400);
   transition: transform .2s;
-}
-
-.supply-item.is-collapsed .supply-item-name {
-  background: #fff;
-  border-bottom-color: var(--gray-100);
 }
 
 .supply-options {
