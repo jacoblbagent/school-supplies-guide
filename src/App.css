@@ -252,7 +252,7 @@ body {
 /* ---- Info Icon & Why Tooltip ---- */
 .why-icon {
   display: inline-block;
-  margin-left: 6px;
+  margin-left: 5px;
   font-size: 0.85rem;
   color: var(--gray-400);
   vertical-align: middle;
