@@ -340,12 +340,12 @@ body {
 
 .supply-grid[data-gender="boy"] .supply-item.is-collapsed .supply-item-name:hover,
 .supply-grid[data-gender="boy"] .supply-item:not(.is-collapsed) .supply-item-name {
-  border-left-color: var(--blue);
+  border-left-color: rgba(37, 99, 235, .6);
 }
 
 .supply-grid[data-gender="girl"] .supply-item.is-collapsed .supply-item-name:hover,
 .supply-grid[data-gender="girl"] .supply-item:not(.is-collapsed) .supply-item-name {
-  border-left-color: var(--pink);
+  border-left-color: rgba(219, 39, 119, .6);
 }
 
 .collapse-arrow {
