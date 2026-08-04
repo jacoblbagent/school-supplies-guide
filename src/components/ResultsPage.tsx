@@ -116,7 +116,6 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver }: 
                       {opt.rec && <span className="rec-star">★</span>}
                     </div>
                     <div className="option-desc">{opt.desc}</div>
-                    <span className="option-link">View on Amazon ↗</span>
                   </a>
                 ))}
               </div>

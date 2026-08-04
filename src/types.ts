@@ -11,6 +11,7 @@ export interface SupplyItem {
   image: string;
   gendered: boolean;
   minGrade?: number;
+  why?: string;
   boy?: SupplyOption[];
   girl?: SupplyOption[];
   options?: SupplyOption[];
