@@ -61,9 +61,9 @@ function Modal({ open, onClose, title, children }: { open: boolean; onClose: () 
   );
 }
 
-const gradeLabels: Record<string, string> = {
-  k: 'K', '1': '1st', '2': '2nd', '3': '3rd', '4': '4th', '5': '5th',
-};
+const gradeLabels: [string, string][] = [
+  ['k', 'K'], ['1', '1st'], ['2', '2nd'], ['3', '3rd'], ['4', '4th'], ['5', '5th'],
+];
 
 const genders: Gender[] = ['boy', 'girl'];
 
@@ -97,8 +97,8 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver, on
           <div className="picker">
             <span className="picker-label">Grade</span>
             <div className="picker-seg">
-              {(Object.keys(gradeLabels) as string[]).map(gk => (
-                <button key={gk} className={`picker-btn${gk === gradeKey ? ' active' : ''}`} onClick={() => onChangeGrade(gk)}>{gradeLabels[gk]}</button>
+              {gradeLabels.map(([gk, label]) => (
+                <button key={gk} className={`picker-btn${gk === gradeKey ? ' active' : ''}`} onClick={() => onChangeGrade(gk)}>{label}</button>
               ))}
             </div>
           </div>
