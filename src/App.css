@@ -132,7 +132,24 @@ body {
   margin-bottom: 4px;
 }
 
-.results-hero .summary {
+/* ---- Results Header Bar ---- */
+.results-header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  padding: 12px;
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--gray-100);
+  margin: -40px -20px 24px;
+}
+
+/* ---- Result title ---- */
+.summary {
   font-size: 0.85rem;
   color: var(--gray-400);
 }

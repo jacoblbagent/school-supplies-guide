@@ -67,16 +67,17 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver }: 
 
   return (
     <div className="results-hero" style={{ animation: 'fadeIn .35s ease' }}>
-      <div style={{ textAlign: 'center', marginBottom: 28 }}>
+      <div className="results-header">
+        <button className="info-btn" onClick={() => setTipsOpen(true)}>💡 Tips for Parents</button>
+        <button className="info-btn" onClick={() => setFaqOpen(true)}>❓ FAQ</button>
+      </div>
+
+      <div style={{ textAlign: 'center', marginBottom: 28, paddingTop: 16 }}>
         <h1>{info.title} Supplies</h1>
         <p className="summary">
           For your <strong>{gender}</strong> · {info.subtitle}
         </p>
-        <div style={{ display: 'flex', gap: 8, justifyContent: 'center', marginTop: 12 }}>
-          <button className="info-btn" onClick={() => setTipsOpen(true)}>💡 Tips for Parents</button>
-          <button className="info-btn" onClick={() => setFaqOpen(true)}>❓ FAQ</button>
-          <button className="start-over-btn" onClick={onStartOver}>Start Over</button>
-        </div>
+        <button className="start-over-btn" onClick={onStartOver} style={{ marginTop: 12 }}>Start Over</button>
       </div>
 
       <Modal open={tipsOpen} onClose={() => setTipsOpen(false)} title="💡 Tips for Parents">
