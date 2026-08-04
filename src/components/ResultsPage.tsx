@@ -178,41 +178,113 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver, on
         </div>
 
         <div className="supply-grid" data-gender={gender}>
-          {supplies.map((item, idx) => {
-            let opts: SupplyOption[];
-            if (item.gendered) {
-              opts = (gender === 'boy' ? item.boy : item.girl) ?? [];
-            } else {
-              opts = item.options ?? [];
-            }
+          {(() => {
+            const groups: { label: string; items: typeof supplies; indices: number[] }[] = [];
+            const labelMap = new Map<string, { items: typeof supplies; indices: number[] }>();
 
-            return (
-              <div className={`supply-item${!collapsed[idx] ? ' is-collapsed' : ''}`} key={idx}>
-                <span className="supply-item-name" onClick={() => toggle(idx)}>{item.name}
-                  {item.why && <span className="why-icon" onMouseEnter={() => setWhyIdx(idx)} onMouseLeave={() => setWhyIdx(null)}>ⓘ</span>}
-                  {item.why && whyIdx === idx && (
-                    <div className="why-tip" onMouseEnter={() => setWhyIdx(idx)} onMouseLeave={() => setWhyIdx(null)}>
-                      <span>{item.why}</span>
-                    </div>
-                  )}
-                  <span className="collapse-arrow">❯</span>
-                </span>
-                {collapsed[idx] && (
-                <div className="supply-options">
-                  {opts.map((opt, oi) => (
-                    <a className="supply-option" key={oi} href={opt.link} target="_blank" rel="noopener">
-                      <div className="option-header">
-                        <span className="option-name">{opt.name}</span>
-                        {opt.rec && <span className="rec-star">★</span>}
+            supplies.forEach((item, idx) => {
+              const key = item.group || `__ungrouped_${idx}`;
+              if (!labelMap.has(key)) {
+                labelMap.set(key, { items: [], indices: [] });
+              }
+              labelMap.get(key)!.items.push(item);
+              labelMap.get(key)!.indices.push(idx);
+            });
+
+            // Preserve insertion order from the supplies array
+            const seen = new Set<string>();
+            supplies.forEach((item, idx) => {
+              const key = item.group || `__ungrouped_${idx}`;
+              if (seen.has(key)) return;
+              seen.add(key);
+              const entry = labelMap.get(key)!;
+              const label = key.startsWith('__ungrouped_') ? '' : key;
+              groups.push({ label, items: entry.items, indices: entry.indices });
+            });
+
+            return groups.map((group, gi) => {
+              const items = group.items;
+
+              if (!group.label) {
+                return items.map((item, ii) => {
+                  const idx = group.indices[ii];
+                  let opts: SupplyOption[];
+                  if (item.gendered) {
+                    opts = (gender === 'boy' ? item.boy : item.girl) ?? [];
+                  } else {
+                    opts = item.options ?? [];
+                  }
+                  return (
+                    <div className={`supply-item${!collapsed[idx] ? ' is-collapsed' : ''}`} key={idx}>
+                      <span className="supply-item-name" onClick={() => toggle(idx)}>{item.name}
+                        {item.why && <span className="why-icon" onMouseEnter={() => setWhyIdx(idx)} onMouseLeave={() => setWhyIdx(null)}>ⓘ</span>}
+                        {item.why && whyIdx === idx && (
+                          <div className="why-tip" onMouseEnter={() => setWhyIdx(idx)} onMouseLeave={() => setWhyIdx(null)}>
+                            <span>{item.why}</span>
+                          </div>
+                        )}
+                        <span className="collapse-arrow">❯</span>
+                      </span>
+                      {collapsed[idx] && (
+                      <div className="supply-options">
+                        {opts.map((opt, oi) => (
+                          <a className="supply-option" key={oi} href={opt.link} target="_blank" rel="noopener">
+                            <div className="option-header">
+                              <span className="option-name">{opt.name}</span>
+                              {opt.rec && <span className="rec-star">★</span>}
+                            </div>
+                            <div className="option-desc">{opt.desc}</div>
+                          </a>
+                        ))}
                       </div>
-                      <div className="option-desc">{opt.desc}</div>
-                    </a>
-                  ))}
+                      )}
+                    </div>
+                  );
+                });
+              }
+
+              return (
+                <div className="supply-group" key={gi}>
+                  <span className="supply-group-label">{group.label}</span>
+                  {items.map((item, ii) => {
+                    const idx = group.indices[ii];
+                    let opts: SupplyOption[];
+                    if (item.gendered) {
+                      opts = (gender === 'boy' ? item.boy : item.girl) ?? [];
+                    } else {
+                      opts = item.options ?? [];
+                    }
+                    return (
+                      <div className={`supply-item${!collapsed[idx] ? ' is-collapsed' : ''}`} key={idx}>
+                        <span className="supply-item-name" onClick={() => toggle(idx)}>{item.name}
+                          {item.why && <span className="why-icon" onMouseEnter={() => setWhyIdx(idx)} onMouseLeave={() => setWhyIdx(null)}>ⓘ</span>}
+                          {item.why && whyIdx === idx && (
+                            <div className="why-tip" onMouseEnter={() => setWhyIdx(idx)} onMouseLeave={() => setWhyIdx(null)}>
+                              <span>{item.why}</span>
+                            </div>
+                          )}
+                          <span className="collapse-arrow">❯</span>
+                        </span>
+                        {collapsed[idx] && (
+                        <div className="supply-options">
+                          {opts.map((opt, oi) => (
+                            <a className="supply-option" key={oi} href={opt.link} target="_blank" rel="noopener">
+                              <div className="option-header">
+                                <span className="option-name">{opt.name}</span>
+                                {opt.rec && <span className="rec-star">★</span>}
+                              </div>
+                              <div className="option-desc">{opt.desc}</div>
+                            </a>
+                          ))}
+                        </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
-                )}
-              </div>
-            );
-          })}
+              );
+            });
+          })()}
         </div>
       </div>
 

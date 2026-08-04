@@ -505,7 +505,38 @@ body {
   box-shadow: inset 2px 0 0 rgba(190, 24, 93, .6);
 }
 
-.supply-option:last-child { border-bottom: none; }
+.supply-grid[data-gender="girl"] .supply-option:last-child { border-bottom: none; }
+
+.supply-group {
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.supply-group-label {
+  display: block;
+  padding: 8px 16px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--gray-400);
+  background: var(--gray-50);
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.supply-group .supply-item {
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.supply-group .supply-item:last-child { border-bottom: none; }
+
+.supply-group .supply-item .supply-item-name {
+  border-radius: 0;
+}
 
 .option-header {
   display: flex;
