@@ -3,14 +3,8 @@ import type { Gender, GradeInfo, SupplyOption } from '../types';
 import { getSupplies } from '../data';
 
 const sideBanners = [
-  { emoji: '🎒', headline: 'Shop Backpacks', tagline: 'All grades & styles', url: 'https://www.amazon.com/s?k=kids+school+backpack' },
-  { emoji: '✏️', headline: 'Shop Writing', tagline: 'Pencils, pens & markers', url: 'https://www.amazon.com/s?k=school+pencils+bulk' },
-  { emoji: '📓', headline: 'Shop Notebooks', tagline: 'Composition & spiral', url: 'https://www.amazon.com/s?k=school+notebooks+bulk' },
-  { emoji: '🎨', headline: 'Shop Art Supplies', tagline: 'Crayons, colored pencils & more', url: 'https://www.amazon.com/s?k=art+supplies+school' },
-  { emoji: '🧴', headline: 'Shop Glue & Paste', tagline: 'Glue sticks & liquid', url: 'https://www.amazon.com/s?k=school+glue+sticks' },
-  { emoji: '📁', headline: 'Shop Folders', tagline: 'Pocket & 3-ring', url: 'https://www.amazon.com/s?k=school+folders+pocket' },
-  { emoji: '💧', headline: 'Shop Water Bottles', tagline: 'Leak-proof & insulated', url: 'https://www.amazon.com/s?k=kids+water+bottle+school' },
-  { emoji: '🎧', headline: 'Shop Headphones', tagline: 'Volume-limited & durable', url: 'https://www.amazon.com/s?k=kids+school+headphones' },
+  { emoji: '🎒', headline: 'Shop Amazon Back to School', tagline: 'Great deals on everything kids need', url: 'https://www.amazon.com/s?k=back+to+school' },
+  { emoji: '📚', headline: 'Shop Books for Kids', tagline: 'Bestsellers and new releases', url: 'https://www.amazon.com/s?k=books+for+kids' },
 ];
 
 interface ResultsPageProps {
