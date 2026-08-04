@@ -267,15 +267,20 @@ body {
   left: 14px;
   right: 14px;
   z-index: 50;
-  background: var(--gray-800);
-  color: #fff;
+  background: #fff;
+  color: var(--gray-700);
   font-size: 0.78rem;
   font-weight: 400;
   padding: 10px 14px;
   border-radius: var(--radius);
+  border: 1px solid var(--blue);
   line-height: 1.45;
-  box-shadow: 0 4px 16px rgba(0,0,0,.2);
+  box-shadow: 0 4px 16px rgba(0,0,0,.12);
   animation: fadeIn .15s ease;
+}
+
+.supply-grid[data-gender="girl"] .why-tip {
+  border-color: var(--pink);
 }
 
 .supply-item-name {
