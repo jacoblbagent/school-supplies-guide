@@ -132,9 +132,6 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver, on
               </div>
             </div>
           </div>
-          <p className="summary">
-            {info.subtitle}
-          </p>
         </div>
 
         <Modal open={tipsOpen} onClose={() => setTipsOpen(false)} title="💡 Tips for Parents">
@@ -177,7 +174,7 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver, on
                       <span>{item.why}</span>
                     </div>
                   )}
-                  <span className="collapse-arrow">{collapsed[idx] ? '▼' : '▶'}</span>
+                  <span className="collapse-arrow">▶</span>
                 </span>
                 {collapsed[idx] && (
                 <div className="supply-options">

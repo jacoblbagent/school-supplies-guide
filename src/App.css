@@ -131,7 +131,7 @@ body {
   padding-top: 60px;
   flex: 1;
   max-width: 800px;
-  min-width: 0;
+  min-width: 500px;
 }
 
 .results-hero h1 {
@@ -227,11 +227,6 @@ body {
   background: var(--pink);
 }
 
-/* ---- Result title ---- */
-.summary {
-  font-size: 0.85rem;
-  color: var(--gray-400);
-}
 
 .grade-info {
   text-align: left;
@@ -261,10 +256,19 @@ body {
   line-height: 1.4;
 }
 
-.start-over-btn:hover,
+.start-over-btn {
+  border-color: var(--blue);
+  color: var(--blue)
+}
+
 .info-btn:hover {
   border-color: var(--blue);
   color: var(--blue);
+}
+
+.start-over-btn:hover {
+  background-color: var(--blue);
+  color: #fff;
 }
 
 /* ---- Supply Grid ---- */
@@ -279,6 +283,7 @@ body {
   border: 1px solid var(--gray-100);
   border-radius: var(--radius);
   text-align: left;
+  overflow: hidden;
 }
 
 /* ---- Info Icon & Why Tooltip ---- */
@@ -355,7 +360,23 @@ body {
   margin-left: auto;
   font-size: 0.7rem;
   color: var(--gray-400);
-  transition: transform .2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  background: var(--gray-100);
+  transition: transform .2s, background .15s;
+  line-height: 1;
+}
+
+.supply-item-name:hover .collapse-arrow {
+  background: var(--gray-200);
+}
+
+.supply-item:not(.is-collapsed) .collapse-arrow {
+  transform: rotate(90deg);
 }
 
 /* ---- Side Banner Ads ---- */
