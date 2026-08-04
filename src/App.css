@@ -262,11 +262,8 @@ body {
   border: 1px solid var(--gray-100);
   border-radius: var(--radius);
   overflow: hidden;
-  transition: box-shadow .2s;
   text-align: left;
 }
-
-.supply-item:hover { box-shadow: 0 3px 10px rgba(0,0,0,.05), 0 1px 4px rgba(0,0,0,.04); }
 
 /* ---- Info Icon & Why Tooltip ---- */
 .why-icon {
