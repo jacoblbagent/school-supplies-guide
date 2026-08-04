@@ -305,11 +305,14 @@ body {
 }
 
 .supply-item-name {
-  display: block;
+  display: flex;
+  align-items: center;
   padding: 10px 16px;
   font-weight: 700;
   font-size: 0.95rem;
   position: relative;
+  cursor: pointer;
+  user-select: none;
   border-bottom: 1px solid var(--gray-100);
 }
 
@@ -322,12 +325,25 @@ body {
 .supply-grid[data-gender="girl"] .supply-item-name {
   color: #9d174d;
   background: var(--pink-light);
-  border-bottom-color: #fbcfe8;
+  border-bottom: 1px solid #fbcfe8;
+}
+
+.collapse-arrow {
+  margin-left: auto;
+  font-size: 0.7rem;
+  color: var(--gray-400);
+  transition: transform .2s;
+}
+
+.supply-item.is-collapsed .supply-item-name {
+  background: #fff;
+  border-bottom-color: var(--gray-100);
 }
 
 .supply-options {
   display: flex;
   flex-direction: column;
+  animation: fadeIn .15s ease;
 }
 
 .supply-option {

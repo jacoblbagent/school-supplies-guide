@@ -72,6 +72,9 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver, on
   const [tipsOpen, setTipsOpen] = useState(false);
   const [faqOpen, setFaqOpen] = useState(false);
   const [whyIdx, setWhyIdx] = useState<number | null>(null);
+  const [collapsed, setCollapsed] = useState<Record<number, boolean>>({});
+
+  const toggle = (idx: number) => setCollapsed(c => ({ ...c, [idx]: !c[idx] }));
 
   return (
     <div className="results-hero" style={{ animation: 'fadeIn .35s ease' }}>
@@ -137,15 +140,17 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver, on
           }
 
           return (
-            <div className="supply-item" key={idx}>
-              <span className="supply-item-name" onMouseEnter={() => setWhyIdx(idx)} onMouseLeave={() => setWhyIdx(null)}>{item.name}
+            <div className={`supply-item${!collapsed[idx] ? ' is-collapsed' : ''}`} key={idx}>
+              <span className="supply-item-name" onClick={() => toggle(idx)} onMouseEnter={() => setWhyIdx(idx)} onMouseLeave={() => setWhyIdx(null)}>{item.name}
                 {item.why && <span className="why-icon">ⓘ</span>}
                 {item.why && whyIdx === idx && (
                   <div className="why-tip">
                     <span>{item.why}</span>
                   </div>
                 )}
+                <span className="collapse-arrow">{collapsed[idx] ? '▼' : '▶'}</span>
               </span>
+              {collapsed[idx] && (
               <div className="supply-options">
                 {opts.map((opt, oi) => (
                   <a className="supply-option" key={oi} href={opt.link} target="_blank" rel="noopener">
@@ -157,6 +162,7 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver, on
                   </a>
                 ))}
               </div>
+              )}
             </div>
           );
         })}
