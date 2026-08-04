@@ -7,6 +7,8 @@ interface ResultsPageProps {
   gradeKey: string;
   gradeInfo: GradeInfo;
   onStartOver: () => void;
+  onChangeGender: (g: Gender) => void;
+  onChangeGrade: (gk: string) => void;
 }
 
 const tips = [
@@ -59,7 +61,13 @@ function Modal({ open, onClose, title, children }: { open: boolean; onClose: () 
   );
 }
 
-export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver }: ResultsPageProps) {
+const gradeLabels: Record<string, string> = {
+  k: 'K', '1': '1st', '2': '2nd', '3': '3rd', '4': '4th', '5': '5th',
+};
+
+const genders: Gender[] = ['boy', 'girl'];
+
+export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver, onChangeGender, onChangeGrade }: ResultsPageProps) {
   const supplies = useMemo(() => getSupplies(gradeKey), [gradeKey]);
   const [tipsOpen, setTipsOpen] = useState(false);
   const [faqOpen, setFaqOpen] = useState(false);
@@ -74,8 +82,26 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver }: 
 
       <div style={{ textAlign: 'center', marginBottom: 28, paddingTop: 16 }}>
         <h1>{info.title} Supplies</h1>
+        <div className="picker-row" data-gender={gender}>
+          <div className="picker">
+            <span className="picker-label">Gender</span>
+            <div className="picker-seg">
+              {genders.map(g => (
+                <button key={g} className={`picker-btn${g === gender ? ' active' : ''}`} onClick={() => onChangeGender(g)}>{g}</button>
+              ))}
+            </div>
+          </div>
+          <div className="picker">
+            <span className="picker-label">Grade</span>
+            <div className="picker-seg">
+              {(Object.keys(gradeLabels) as string[]).map(gk => (
+                <button key={gk} className={`picker-btn${gk === gradeKey ? ' active' : ''}`} onClick={() => onChangeGrade(gk)}>{gradeLabels[gk]}</button>
+              ))}
+            </div>
+          </div>
+        </div>
         <p className="summary">
-          For your <strong>{gender}</strong> · {info.subtitle}
+          {info.subtitle}
         </p>
         <button className="start-over-btn" onClick={onStartOver} style={{ marginTop: 12 }}>Start Over</button>
       </div>

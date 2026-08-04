@@ -60,6 +60,15 @@ function App() {
     window.scrollTo(0, 0);
   }, []);
 
+  const changeGender = useCallback((g: Gender) => {
+    setGender(g);
+  }, []);
+
+  const changeGrade = useCallback((gk: string) => {
+    setGradeKey(gk);
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="app">
       {step === 'gender' && <GenderStep onSelect={selectGender} />}
@@ -70,6 +79,8 @@ function App() {
           gradeKey={gradeKey}
           gradeInfo={gradeInfo[gradeKey]}
           onStartOver={startOver}
+          onChangeGender={changeGender}
+          onChangeGrade={changeGrade}
         />
       )}
     </div>

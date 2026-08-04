@@ -148,6 +148,62 @@ body {
   margin: -40px -20px 24px;
 }
 
+/* ---- Picker Controls ---- */
+.picker-row {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin: 16px 0 6px;
+  flex-wrap: wrap;
+}
+
+.picker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.picker-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--gray-400);
+}
+
+.picker-seg {
+  display: flex;
+  border-radius: 8px;
+  border: 1px solid var(--gray-100);
+  overflow: hidden;
+}
+
+.picker-btn {
+  all: unset;
+  padding: 6px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gray-400);
+  background: #fff;
+  cursor: pointer;
+  transition: background .12s, color .12s;
+  border-right: 1px solid var(--gray-100);
+}
+
+.picker-btn:last-child { border-right: none; }
+
+.picker-btn:hover { background: var(--gray-50); }
+
+.picker-btn.active {
+  color: #fff;
+  background: var(--blue);
+}
+
+.picker-row[data-gender="girl"] .picker-btn.active {
+  background: var(--pink);
+}
+
 /* ---- Result title ---- */
 .summary {
   font-size: 0.85rem;
