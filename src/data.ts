@@ -1,12 +1,12 @@
 import type { SupplyItem, GradeInfo, SupplyOption } from './types';
 
 export const gradeInfo: Record<string, GradeInfo> = {
-  k:  { key: 'k', title: 'Kindergarten', subtitle: 'Ages 5–6 · First school year', iconClass: 'grade-k' },
-  '1': { key: '1', title: '1st Grade',     subtitle: 'Ages 6–7 · Building reading & writing', iconClass: 'grade-1' },
-  '2': { key: '2', title: '2nd Grade',     subtitle: 'Ages 7–8 · More subjects, more independence', iconClass: 'grade-2' },
-  '3': { key: '3', title: '3rd Grade',     subtitle: 'Ages 8–9 · Transition year', iconClass: 'grade-3' },
-  '4': { key: '4', title: '4th Grade',     subtitle: 'Ages 9–10', iconClass: 'grade-4' },
-  '5': { key: '5', title: '5th Grade',     subtitle: 'Ages 10–11 · Middle school prep', iconClass: 'grade-5' },
+  k:  { key: 'k', title: 'Kindergarten', subtitle: 'First school year · Play-based learning', iconClass: 'grade-k' },
+  '1': { key: '1', title: '1st Grade',     subtitle: 'Building reading & writing', iconClass: 'grade-1' },
+  '2': { key: '2', title: '2nd Grade',     subtitle: 'More subjects, more independence', iconClass: 'grade-2' },
+  '3': { key: '3', title: '3rd Grade',     subtitle: 'The transition year', iconClass: 'grade-3' },
+  '4': { key: '4', title: '4th Grade',     subtitle: 'Cursive, multiplication & beyond', iconClass: 'grade-4' },
+  '5': { key: '5', title: '5th Grade',     subtitle: 'Middle school prep', iconClass: 'grade-5' },
 };
 
 export const grades = ['k', '1', '2', '3', '4', '5'];
