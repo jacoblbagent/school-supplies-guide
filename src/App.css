@@ -338,11 +338,13 @@ body {
   transition: border-left-color .15s;
 }
 
-.supply-grid[data-gender="boy"] .supply-item.is-collapsed .supply-item-name:hover {
+.supply-grid[data-gender="boy"] .supply-item.is-collapsed .supply-item-name:hover,
+.supply-grid[data-gender="boy"] .supply-item:not(.is-collapsed) .supply-item-name {
   border-left-color: var(--blue);
 }
 
-.supply-grid[data-gender="girl"] .supply-item.is-collapsed .supply-item-name:hover {
+.supply-grid[data-gender="girl"] .supply-item.is-collapsed .supply-item-name:hover,
+.supply-grid[data-gender="girl"] .supply-item:not(.is-collapsed) .supply-item-name {
   border-left-color: var(--pink);
 }
 
@@ -373,20 +375,20 @@ body {
 
 .supply-option:hover {
   background: #f1f5f9;
-  box-shadow: inset 2px 0 0 var(--blue);
+  box-shadow: inset 2px 0 0 rgba(37, 99, 235, .6);
 }
 
 .supply-grid[data-gender="girl"] .supply-option:hover {
-  box-shadow: inset 2px 0 0 var(--pink);
+  box-shadow: inset 2px 0 0 rgba(219, 39, 119, .6);
 }
 
 .supply-option:active {
   background: #e2e8f0;
-  box-shadow: inset 2px 0 0 var(--blue-dark);
+  box-shadow: inset 2px 0 0 rgba(29, 78, 216, .6);
 }
 
 .supply-grid[data-gender="girl"] .supply-option:active {
-  box-shadow: inset 2px 0 0 var(--pink-dark);
+  box-shadow: inset 2px 0 0 rgba(190, 24, 93, .6);
 }
 
 .supply-option:last-child { border-bottom: none; }
