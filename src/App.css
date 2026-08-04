@@ -428,6 +428,19 @@ body {
   margin-top: 1px;
 }
 
+.side-banner--tall {
+  padding: 28px 16px;
+}
+
+.side-banner--tall .side-banner-emoji {
+  font-size: 2.2rem;
+  margin-bottom: 6px;
+}
+
+.side-banner--tall .side-banner-headline {
+  font-size: 0.85rem;
+}
+
 .side-banner-sponsored {
   position: absolute;
   top: 2px;

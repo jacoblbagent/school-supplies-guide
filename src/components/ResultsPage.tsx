@@ -3,7 +3,7 @@ import type { Gender, GradeInfo, SupplyOption } from '../types';
 import { getSupplies } from '../data';
 
 const sideBanners = [
-  { emoji: '🎒', headline: 'Shop Amazon Back to School', tagline: 'Great deals on everything kids need', url: 'https://www.amazon.com/s?k=back+to+school' },
+  { emoji: '🎒', headline: 'Shop Amazon Back to School', tagline: 'Great deals on everything kids need', url: 'https://www.amazon.com/s?k=back+to+school', tall: true },
   { emoji: '📚', headline: 'Shop Books for Kids', tagline: 'Bestsellers and new releases', url: 'https://www.amazon.com/s?k=books+for+kids' },
 ];
 
@@ -76,7 +76,7 @@ function SideBanners() {
   return (
     <div className="side-banners">
       {sideBanners.map((b, i) => (
-        <a key={i} className="side-banner" href={b.url} target="_blank" rel="noopener">
+        <a key={i} className={`side-banner${b.tall ? ' side-banner--tall' : ''}`} href={b.url} target="_blank" rel="noopener">
           <span className="side-banner-emoji">{b.emoji}</span>
           <span className="side-banner-text">
             <span className="side-banner-headline">{b.headline}</span>
