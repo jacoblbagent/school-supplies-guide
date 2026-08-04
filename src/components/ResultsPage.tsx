@@ -77,7 +77,7 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver, on
   const toggle = (idx: number) => setCollapsed(c => ({ ...c, [idx]: !c[idx] }));
 
   return (
-    <div className="results-hero" style={{ animation: 'fadeIn .35s ease' }}>
+    <div className="results-hero">
       <div className="results-header" style={{ position: 'fixed', top: 0, left: 0, width: '100vw' }}>
         <span className="header-brand" role="button" tabIndex={0} onClick={onStartOver} onKeyDown={e => e.key === 'Enter' && onStartOver()}>School Supplies Helper</span>
         <div className="header-actions">
