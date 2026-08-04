@@ -76,8 +76,11 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver, on
   return (
     <div className="results-hero" style={{ animation: 'fadeIn .35s ease' }}>
       <div className="results-header">
-        <button className="info-btn" onClick={() => setTipsOpen(true)}>💡 Tips for Parents</button>
-        <button className="info-btn" onClick={() => setFaqOpen(true)}>❓ FAQ</button>
+        <span className="header-brand">School Supplies Helper</span>
+        <div className="header-actions">
+          <button className="info-btn" onClick={() => setTipsOpen(true)}>💡 Tips for Parents</button>
+          <button className="info-btn" onClick={() => setFaqOpen(true)}>❓ FAQ</button>
+        </div>
       </div>
 
       <div style={{ textAlign: 'center', marginBottom: 28, paddingTop: 16 }}>

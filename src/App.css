@@ -141,13 +141,26 @@ body {
   width: 100vw;
   z-index: 60;
   display: flex;
-  gap: 8px;
-  justify-content: center;
-  padding: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
   background: rgba(255,255,255,.85);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--gray-100);
+  box-sizing: border-box;
+}
+
+.header-brand {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--gray-700);
+  white-space: nowrap;
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
 }
 
 /* ---- Picker Controls ---- */
