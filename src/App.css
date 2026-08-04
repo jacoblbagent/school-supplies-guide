@@ -462,22 +462,21 @@ body {
 }
 
 .info-btn {
-  background: var(--gray-50);
-  border: 1px solid var(--gray-100);
-  border-radius: var(--radius);
+  background: none;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 8px;
   padding: 8px 18px;
-  font-size: 0.84rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  color: var(--gray-600);
+  color: var(--gray-500);
   cursor: pointer;
-  transition: background .15s, border-color .15s;
+  transition: all .15s;
   white-space: nowrap;
 }
 
 .info-btn:hover {
-  background: #fff;
-  border-color: var(--gray-300);
-  color: var(--gray-800);
+  border-color: var(--blue);
+  color: var(--blue);
 }
 
 /* ---- Tips & FAQ ---- */
