@@ -49,10 +49,7 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver }: 
 
           return (
             <div className="supply-item" key={idx}>
-              <div className="supply-item-header">
-                <img className="supply-item-img" src={item.image} alt={item.name} />
-                <span className="supply-item-name">{item.name}</span>
-              </div>
+              <span className="supply-item-name">{item.name}</span>
               <div className="supply-options">
                 {opts.map((opt, oi) => (
                   <a className="supply-option" key={oi} href={opt.link} target="_blank" rel="noopener">
