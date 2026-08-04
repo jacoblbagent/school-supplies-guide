@@ -2,6 +2,9 @@
   --blue: #2563eb;
   --blue-light: #dbeafe;
   --blue-dark: #1d4ed8;
+  --pink: #db2777;
+  --pink-light: #fce7f3;
+  --pink-dark: #be185d;
   --gray-50: #f8fafc;
   --gray-100: #e2e8f0;
   --gray-200: #cbd5e1;
@@ -213,13 +216,13 @@ body {
 
 .supply-grid[data-gender="boy"] .supply-item-name {
   color: #1e40af;
-  background: #dbeafe;
+  background: var(--blue-light);
   border-bottom-color: #bfdbfe;
 }
 
 .supply-grid[data-gender="girl"] .supply-item-name {
   color: #9d174d;
-  background: #fce7f3;
+  background: var(--pink-light);
   border-bottom-color: #fbcfe8;
 }
 
@@ -245,9 +248,17 @@ body {
   box-shadow: inset 2px 0 0 var(--blue);
 }
 
+.supply-grid[data-gender="girl"] .supply-option:hover {
+  box-shadow: inset 2px 0 0 var(--pink);
+}
+
 .supply-option:active {
   background: #e2e8f0;
   box-shadow: inset 2px 0 0 var(--blue-dark);
+}
+
+.supply-grid[data-gender="girl"] .supply-option:active {
+  box-shadow: inset 2px 0 0 var(--pink-dark);
 }
 
 .supply-option:last-child { border-bottom: none; }
