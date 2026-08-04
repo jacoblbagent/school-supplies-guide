@@ -230,21 +230,23 @@ body {
   color: var(--gray-400);
 }
 
-.start-over-btn {
-  display: inline-block;
-  margin-top: 12px;
+.start-over-btn,
+.info-btn {
   background: none;
   border: 1.5px solid var(--gray-200);
   border-radius: 8px;
-  padding: 8px 18px;
-  font-size: 0.8rem;
+  padding: 6px 14px;
+  font-size: 0.78rem;
   font-weight: 600;
   color: var(--gray-500);
   cursor: pointer;
   transition: all .15s;
+  white-space: nowrap;
+  line-height: 1.4;
 }
 
-.start-over-btn:hover {
+.start-over-btn:hover,
+.info-btn:hover {
   border-color: var(--blue);
   color: var(--blue);
 }
@@ -454,24 +456,6 @@ body {
   overflow-y: auto;
   display: grid;
   gap: 10px;
-}
-
-.info-btn {
-  background: none;
-  border: 1.5px solid var(--gray-200);
-  border-radius: 8px;
-  padding: 8px 18px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--gray-500);
-  cursor: pointer;
-  transition: all .15s;
-  white-space: nowrap;
-}
-
-.info-btn:hover {
-  border-color: var(--blue);
-  color: var(--blue);
 }
 
 /* ---- Tips & FAQ ---- */
