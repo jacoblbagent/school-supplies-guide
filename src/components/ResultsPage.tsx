@@ -1,13 +1,12 @@
+import { useState, useMemo, useRef, useEffect } from 'react';
 import type { Gender, GradeInfo, SupplyOption } from '../types';
 import { getSupplies } from '../data';
-import { useMemo } from 'react';
 
 interface ResultsPageProps {
   gender: Gender;
   gradeKey: string;
   gradeInfo: GradeInfo;
   onStartOver: () => void;
-  onBack: () => void;
 }
 
 const tips = [
@@ -25,8 +24,45 @@ const faqs = [
   { q: 'When is the best time to buy supplies?', a: 'Mid-August (July for early birds) has the best sales. If you miss it, wait until mid-September — prices drop again after the rush.' },
 ];
 
+function Modal({ open, onClose, title, children }: { open: boolean; onClose: () => void; title: string; children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) onClose();
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [open, onClose]);
+
+  useEffect(() => {
+    if (open) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = '';
+    return () => { document.body.style.overflow = ''; };
+  }, [open]);
+
+  if (!open) return null;
+
+  return (
+    <div className="modal-overlay">
+      <div className="modal" ref={ref}>
+        <div className="modal-header">
+          <span className="modal-title">{title}</span>
+          <button className="modal-close" onClick={onClose}>✕</button>
+        </div>
+        <div className="modal-body">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver }: ResultsPageProps) {
   const supplies = useMemo(() => getSupplies(gradeKey), [gradeKey]);
+  const [tipsOpen, setTipsOpen] = useState(false);
+  const [faqOpen, setFaqOpen] = useState(false);
 
   return (
     <div className="results-hero" style={{ animation: 'fadeIn .35s ease' }}>
@@ -35,8 +71,30 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver }: 
         <p className="summary">
           For your <strong>{gender}</strong> · {info.subtitle}
         </p>
-        <button className="start-over-btn" onClick={onStartOver}>Start Over</button>
+        <div style={{ display: 'flex', gap: 8, justifyContent: 'center', marginTop: 12 }}>
+          <button className="info-btn" onClick={() => setTipsOpen(true)}>💡 Tips for Parents</button>
+          <button className="info-btn" onClick={() => setFaqOpen(true)}>❓ FAQ</button>
+          <button className="start-over-btn" onClick={onStartOver}>Start Over</button>
+        </div>
       </div>
+
+      <Modal open={tipsOpen} onClose={() => setTipsOpen(false)} title="💡 Tips for Parents">
+        {tips.map((tip, i) => (
+          <div className="tip-card" key={i}>
+            <div className="tip-title">{tip.title}</div>
+            <div className="tip-text">{tip.text}</div>
+          </div>
+        ))}
+      </Modal>
+
+      <Modal open={faqOpen} onClose={() => setFaqOpen(false)} title="❓ Frequently Asked Questions">
+        {faqs.map((faq, i) => (
+          <details className="faq-item" key={i}>
+            <summary className="faq-question">{faq.q}</summary>
+            <div className="faq-answer">{faq.a}</div>
+          </details>
+        ))}
+      </Modal>
 
       <div className="supply-grid" data-gender={gender}>
         {supplies.map((item, idx) => {
@@ -65,29 +123,6 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver }: 
             </div>
           );
         })}
-      </div>
-
-      {/* Tips & FAQ */}
-      <div className="extra-sections">
-        <h2>💡 Tips for Parents</h2>
-        <div className="tips-grid">
-          {tips.map((tip, i) => (
-            <div className="tip-card" key={i}>
-              <div className="tip-title">{tip.title}</div>
-              <div className="tip-text">{tip.text}</div>
-            </div>
-          ))}
-        </div>
-
-        <h2>❓ Frequently Asked Questions</h2>
-        <div className="faq-list">
-          {faqs.map((faq, i) => (
-            <details className="faq-item" key={i}>
-              <summary className="faq-question">{faq.q}</summary>
-              <div className="faq-answer">{faq.a}</div>
-            </details>
-          ))}
-        </div>
       </div>
     </div>
   );

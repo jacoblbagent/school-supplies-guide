@@ -70,7 +70,6 @@ function App() {
           gradeKey={gradeKey}
           gradeInfo={gradeInfo[gradeKey]}
           onStartOver={startOver}
-          onBack={backToGender}
         />
       )}
     </div>
