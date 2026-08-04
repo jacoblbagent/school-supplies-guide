@@ -130,6 +130,10 @@ export function ResultsPage({ gender, gradeKey, gradeInfo: info, onStartOver, on
         ))}
       </Modal>
 
+      <div className="grade-info" data-gender={gender}>
+        <p>{info.description}</p>
+      </div>
+
       <div className="supply-grid" data-gender={gender}>
         {supplies.map((item, idx) => {
           let opts: SupplyOption[];

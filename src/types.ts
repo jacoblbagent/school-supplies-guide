@@ -21,6 +21,7 @@ export interface GradeInfo {
   key: string;
   title: string;
   subtitle: string;
+  description: string;
   iconClass: string;
 }
 
